@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class LoginViewController: ViewController {
+    
+    var subscriptions = Set<AnyCancellable>()
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Log-in"
@@ -57,6 +61,37 @@ class LoginViewController: ViewController {
     
     let loginViewModel = LoginViewModel()
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        binding()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func binding() {
+        emailTextField.textPublisher()
+            .assign(to: \.email, on: loginViewModel.input)
+            .store(in: &subscriptions)
+        passwordTextField.textPublisher()
+            .assign(to: \.password, on: loginViewModel.input)
+            .store(in: &subscriptions)
+        
+        let output = loginViewModel.binding()
+        output.loginVerificationEvent.sink { [weak self] completion in
+            switch completion {
+                
+            case .finished:
+                self?.showLoginSuccessAlertController()
+            case .failure(let error):
+                self?.showLoginFailAlertController(error: error)
+            }
+        } receiveValue: { () in }
+        .store(in: &subscriptions)
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "background 1")
@@ -74,19 +109,23 @@ class LoginViewController: ViewController {
     }
     
     @objc func handleLogin() {
-        showLoginSuccessAlertController()
+        loginViewModel.input.loginButtonEvent.send()
     }
     
     func showLoginSuccessAlertController() {
         let alertController = UIAlertController(title: "Log-in Success", message: "Welcome to our place", preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "OK", style: .cancel)
+        let action = UIAlertAction(title: "OK", style: .cancel) {[weak self] _ in
+            self?.dismiss(animated: true)
+        }
         alertController.addAction(action)
         show(alertController, sender: nil)
     }
     
-    func showLoginFailAlertController(errorMessage: String) {
-        let alertController = UIAlertController(title: "Log-in Fail", message: errorMessage, preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Try again", style: .cancel)
+    func showLoginFailAlertController(error: LoginVerificationError) {
+        let alertController = UIAlertController(title: "Log-in Fail", message: error.localizedDescription, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Try again", style: .destructive) {[weak self] _ in
+            self?.dismiss(animated: true)
+        }
         alertController.addAction(action)
         show(alertController, sender: nil)
     }

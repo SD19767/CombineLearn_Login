@@ -15,6 +15,7 @@
 		AE25E5A32AE4ECD800C8C5BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE25E5A12AE4ECD800C8C5BA /* LaunchScreen.storyboard */; };
 		AE25E5AB2AE5001C00C8C5BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E5AA2AE5001C00C8C5BA /* LoginViewController.swift */; };
 		AE25E5AD2AE5102C00C8C5BA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E5AC2AE5102C00C8C5BA /* LoginViewModel.swift */; };
+		AE25E5B02AE51ABB00C8C5BA /* UITextField+textPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E5AF2AE51ABB00C8C5BA /* UITextField+textPublisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AE25E5A42AE4ECD800C8C5BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE25E5AA2AE5001C00C8C5BA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE25E5AC2AE5102C00C8C5BA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		AE25E5AF2AE51ABB00C8C5BA /* UITextField+textPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+textPublisher.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		AE25E5952AE4ECD700C8C5BA /* CombineLearn_Login */ = {
 			isa = PBXGroup;
 			children = (
+				AE25E5AE2AE51A9500C8C5BA /* extension */,
 				AE25E5962AE4ECD700C8C5BA /* AppDelegate.swift */,
 				AE25E5982AE4ECD700C8C5BA /* SceneDelegate.swift */,
 				AE25E59A2AE4ECD700C8C5BA /* ViewController.swift */,
@@ -71,6 +74,14 @@
 				AE25E5A42AE4ECD800C8C5BA /* Info.plist */,
 			);
 			path = CombineLearn_Login;
+			sourceTree = "<group>";
+		};
+		AE25E5AE2AE51A9500C8C5BA /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E5AF2AE51ABB00C8C5BA /* UITextField+textPublisher.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE25E5AB2AE5001C00C8C5BA /* LoginViewController.swift in Sources */,
+				AE25E5B02AE51ABB00C8C5BA /* UITextField+textPublisher.swift in Sources */,
 				AE25E59B2AE4ECD700C8C5BA /* ViewController.swift in Sources */,
 				AE25E5972AE4ECD700C8C5BA /* AppDelegate.swift in Sources */,
 				AE25E5AD2AE5102C00C8C5BA /* LoginViewModel.swift in Sources */,
