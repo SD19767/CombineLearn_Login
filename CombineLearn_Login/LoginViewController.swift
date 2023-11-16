@@ -47,6 +47,8 @@ class LoginViewController: ViewController {
         button.setTitle("Login", for: .normal)
         button.configuration?.cornerStyle = .capsule
         button.configuration?.baseBackgroundColor = .lightGray
+        button.setImage(UIImage(systemName: "globe"), for: .normal)
+        button.semanticContentAttribute = .forceRightToLeft
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
